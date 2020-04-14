@@ -4,7 +4,8 @@ module.exports = {
   getCars,
   getCarsById,
   insert,
-  update
+  update,
+  remove
 };
 
 function getCars() {
@@ -32,4 +33,12 @@ function update(id, changes) {
     .from('cars')
     .where({id})
     .update(changes);
+}
+
+function remove(id) {
+  return db
+    .select('*')
+    .from('cars')
+    .where({id})
+    .del();
 }

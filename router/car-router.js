@@ -63,4 +63,20 @@ router.put('/:id', (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+  const {id} = req.params;
+
+  db.remove(id)
+    .then(car => {
+      if (car) {
+        res.status(200).json({data: car});
+      } else {
+        res.status(404).json({message: 'Invalid Id, please try again'});
+      }
+    })
+    .catch(err => {
+      res.status(500).json({message: 'Something went wrong deleting your content'});
+    });
+});
+
 module.exports = router;
