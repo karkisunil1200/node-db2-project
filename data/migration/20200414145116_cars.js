@@ -10,7 +10,7 @@ exports.up = function(knex) {
       .unique();
     tbl.integer('mileage').notNullable();
     tbl.string('type');
-    tbl.string('title status');
+    tbl.string('status');
   });
 };
 
