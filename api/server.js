@@ -3,6 +3,8 @@ const carRouter = require('../router/car-router');
 
 const server = express();
 
+server.use(express.json());
+
 server.get('/', (req, res) => {
   res.json({server: 'up'});
 });

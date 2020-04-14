@@ -2,7 +2,8 @@ const db = require('../dbConfig');
 
 module.exports = {
   getCars,
-  getCarsById
+  getCarsById,
+  insert
 };
 
 function getCars() {
@@ -15,4 +16,11 @@ function getCarsById(id) {
     .from('cars')
     .where({id})
     .first();
+}
+
+function insert(data) {
+  return db
+    .select('*')
+    .from('cars')
+    .insert(data);
 }

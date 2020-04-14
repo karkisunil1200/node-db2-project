@@ -29,4 +29,20 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.post('/', (req, res) => {
+  const post = req.body;
+
+  db.insert(post)
+    .then(cars => {
+      if (cars) {
+        res.status(201).json({data: cars});
+      } else {
+        res.status(404).json({message: 'missing information'});
+      }
+    })
+    .catch(err => {
+      res.status(500).json({message: 'Sorry, post could not be posted'});
+    });
+});
+
 module.exports = router;
