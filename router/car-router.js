@@ -45,4 +45,22 @@ router.post('/', (req, res) => {
     });
 });
 
+router.put('/:id', (req, res) => {
+  const {id} = req.params;
+
+  const changes = req.body;
+
+  db.update(id, changes)
+    .then(car => {
+      if (car) {
+        res.status(200).json({data: car});
+      } else {
+        res.status(404).json({message: 'There was a issue with the Id', error: car.message});
+      }
+    })
+    .catch(err => {
+      res.status(500).json({message: 'There was error. Could not update'});
+    });
+});
+
 module.exports = router;

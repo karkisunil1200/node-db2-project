@@ -3,7 +3,8 @@ const db = require('../dbConfig');
 module.exports = {
   getCars,
   getCarsById,
-  insert
+  insert,
+  update
 };
 
 function getCars() {
@@ -23,4 +24,12 @@ function insert(data) {
     .select('*')
     .from('cars')
     .insert(data);
+}
+
+function update(id, changes) {
+  return db
+    .select('*')
+    .from('cars')
+    .where({id})
+    .update(changes);
 }
