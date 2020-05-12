@@ -34,7 +34,24 @@ router.post('/', (req, res) => {
 
   Cars.insert(post)
     .then(car => {
-      res.status(200).json({data: car});
+      res.status(201).json({data: car});
+    })
+    .catch(err => {
+      res.status(500).json({message: err.message});
+    });
+});
+
+router.put('/:id', (req, res) => {
+  const {id} = req.params;
+  const changes = req.body;
+
+  Cars.update(id, changes)
+    .then(car => {
+      if (car) {
+        res.status(200).json({data: car});
+      } else {
+        res.status(404).json({message: 'Invalid Id or missing content'});
+      }
     })
     .catch(err => {
       res.status(500).json({message: err.message});
