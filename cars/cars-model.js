@@ -22,5 +22,8 @@ function insert(data) {
   return db
     .select('*')
     .from('cars')
-    .insert(data);
+    .insert(data, 'id')
+    .then(([id]) => {
+      return findById(id);
+    });
 }
