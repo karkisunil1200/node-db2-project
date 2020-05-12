@@ -4,7 +4,8 @@ module.exports = {
   findAll,
   findById,
   insert,
-  update
+  update,
+  remove
 };
 
 function findAll() {
@@ -37,4 +38,12 @@ function update(id, changes) {
     .then(() => {
       return findById(id);
     });
+}
+
+function remove(id) {
+  return db
+    .select('*')
+    .from('cars')
+    .where({id})
+    .del();
 }
